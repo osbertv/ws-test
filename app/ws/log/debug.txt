@@ -1,0 +1,8 @@
+GET:emps [2025-05-05 13:05:23]
+GET:device [2025-05-05 13:05:23]
+GET:device [2025-05-06 13:50:20]
+GET:emps [2025-05-06 13:50:20]
+SQL: select COUNT(*) as count from person    [2025-05-06 13:50:20]
+SQL: select serial_num as serialNum from device    [2025-05-06 13:50:20]
+SQL: select person.id as enrollId,name,backupnum as num,roll_id as admin,enrollinfo.imagepath AS imagePath from person LEFT JOIN enrollinfo ON person.id= enrollinfo.enroll_id and backupnum=50  order by per [2025-05-06 13:50:20]
+echo: {"extend":{"device":[]},"code":100,"msg":"Success\uff01"} [2025-05-06 13:50:20]

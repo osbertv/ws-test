@@ -1,0 +1,32 @@
+services:
+  web:
+    build:
+      context: app
+      target: builder
+    ports: 
+      - '8080:80'
+    volumes:
+      - ./app:/var/www/html/
+    links:
+      - db
+    depends_on:
+      - db
+  db:
+    image: mariadb:latest
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./app/ws/data.sql:/docker-entrypoint-initdb.d/data.sql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass12345
+      - MYSQL_DATABASE=realtime
+      - MYSQL_USER=realtime
+      - MYSQL_PASSWORD=realtime12345
+    expose:
+      - 3306
+      - 33060
+volumes:
+  db_data:

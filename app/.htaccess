@@ -1,0 +1,10 @@
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Proxy WebSocket connections
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteCond %{HTTP:Connection} upgrade [NC]
+RewriteRule ^(.*)$ ws://localhost:7738/$1 [P,L]
+
+# Preserve the host header
+# ProxyPreserveHost On
